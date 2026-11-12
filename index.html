@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FirstCall Automation | Reply to every lead in about a minute</title>
+<meta name="description" content="FirstCall Automation replies to your web leads by email and text in about a minute, so no lead sits waiting. Built for HVAC, plumbing and other home-service businesses." />
+<style>
+  :root {
+    --navy: #0f1f38;
+    --navy-2: #172c4d;
+    --amber: #f5a623;
+    --amber-dark: #d98c0c;
+    --ink: #1a1f2b;
+    --gray: #5b6470;
+    --border: #e2e5ea;
+    --bg: #f7f8fa;
+    --green: #1e6b3c;
+    --green-bg: #e7f6ec;
+    --red: #a3261f;
+    --red-bg: #fdecec;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    line-height: 1.5;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* nav */
+  .topbar { background: var(--navy); color: #cfd6e4; font-size: 0.8rem; text-align: right; padding: 8px 0; }
+  .topbar a { text-decoration: none; margin-left: 18px; }
+  nav.main { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; }
+  nav.main .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; color: var(--navy); }
+  .logo span { color: var(--amber-dark); }
+  .links { display: flex; gap: 26px; align-items: center; }
+  .links a { text-decoration: none; font-size: 0.95rem; font-weight: 500; color: var(--navy); }
+  .links a:hover { color: var(--amber-dark); }
+  .btn {
+    display: inline-block; background: var(--amber); color: #1a1205; font-weight: 700;
+    border-radius: 999px; padding: 12px 26px; text-decoration: none; border: 0; cursor: pointer; font-size: 1rem;
+  }
+  .btn:hover { background: #ffb840; }
+  .btn.ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+  .btn.ghost:hover { background: rgba(255,255,255,0.1); }
+  .btn.small { padding: 9px 20px; font-size: 0.9rem; }
+
+  /* hero */
+  .hero {
+    background:
+      radial-gradient(900px 400px at 85% 10%, rgba(245,166,35,0.22), transparent 60%),
+      radial-gradient(700px 500px at 10% 90%, rgba(60,110,200,0.35), transparent 60%),
+      var(--navy);
+    color: #fff; padding: 84px 0 96px; overflow: hidden;
+  }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.02; margin: 0 0 20px;
+    text-transform: uppercase; letter-spacing: -0.02em; font-weight: 900;
+  }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .hero p.lead { font-size: 1.15rem; color: #cfd6e4; max-width: 520px; margin: 0 0 28px; }
+  .hero .cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero .note { margin-top: 16px; font-size: 0.85rem; color: #9fb0cc; }
+
+  .flow { display: flex; flex-direction: column; align-items: stretch; max-width: 420px; margin: 0 auto; width: 100%; }
+  .node {
+    background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(6px); border-radius: 16px; padding: 14px 16px;
+    display: flex; gap: 14px; align-items: center;
+  }
+  .node .ico {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--amber); color: #1a1205;
+    display: grid; place-items: center; flex: none;
+  }
+  .node .ico svg { width: 22px; height: 22px; }
+  .node strong { display: block; font-size: 0.98rem; }
+  .node span { color: #cfd6e4; font-size: 0.85rem; }
+  .node.small { padding: 12px; gap: 10px; }
+  .node.small .ico { width: 34px; height: 34px; }
+  .node.small strong { font-size: 0.9rem; }
+  .node.small span { font-size: 0.78rem; }
+  .branch { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .arrows2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .arrow { width: 2px; height: 26px; background: rgba(245,166,35,0.75); margin: 0 auto; position: relative; }
+  .arrow::after {
+    content: ""; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+    border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid rgba(245,166,35,0.9);
+  }
+  .flowtag { margin-top: 16px; text-align: center; font-size: 0.85rem; color: #9fb0cc; }
+
+  /* industries */
+  .industries { background: var(--navy-2); padding: 30px 0 40px; }
+  .industries h2 { color: #fff; font-size: 1.05rem; text-align: center; margin: 0 0 20px; font-weight: 600; letter-spacing: 0.02em; }
+  .tiles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .tile {
+    border-radius: 14px; padding: 18px 14px; color: #fff; min-height: 200px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border: 1px solid rgba(255,255,255,0.14); position: relative;
+  }
+  .tile svg { width: 30px; height: 30px; }
+  .tile b { font-size: 1rem; }
+  .tile i { font-style: normal; font-size: 0.7rem; background: var(--amber); color: #1a1205; padding: 2px 8px; border-radius: 999px; font-weight: 700; position: absolute; top: 10px; right: 10px; }
+  .t1 { background: linear-gradient(180deg, rgba(47,111,181,0.18) 0%, rgba(10,20,40,0.88) 100%), url(images/hvac.jpg) center/cover no-repeat; }
+  .t2 { background: linear-gradient(180deg, rgba(31,138,138,0.18) 0%, rgba(10,20,40,0.88) 100%), url(images/plumbing.jpg) center/cover no-repeat; }
+  .t3 { background: linear-gradient(180deg, rgba(122,92,194,0.18) 0%, rgba(10,20,40,0.88) 100%), url(images/electrical.jpg) center/cover no-repeat; }
+  .t4 { background: linear-gradient(180deg, rgba(181,96,59,0.18) 0%, rgba(10,20,40,0.88) 100%), url(images/roofing.jpg) center/cover no-repeat; }
+  .t5 { background: linear-gradient(180deg, rgba(63,154,85,0.18) 0%, rgba(10,20,40,0.88) 100%), url(images/landscaping.jpg) center/cover no-repeat; }
+  .t6 { background: linear-gradient(180deg, rgba(194,87,143,0.18) 0%, rgba(10,20,40,0.88) 100%), url(images/cleaning.jpg) center/cover no-repeat; }
+  .industries .more { text-align: center; color: #9fb0cc; font-size: 0.88rem; margin: 18px 0 0; }
+
+  /* sections */
+  section { padding: 84px 0; }
+  .eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; color: var(--amber-dark); margin: 0 0 10px; }
+  h2.title { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.02em; color: var(--navy); }
+  .sub { color: var(--gray); font-size: 1.08rem; max-width: 640px; margin: 0 0 40px; }
+  .center { text-align: center; }
+  .center .sub { margin-left: auto; margin-right: auto; }
+
+  .problem { background: var(--bg); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+  .card h3 { margin: 0 0 10px; font-size: 1.15rem; color: var(--navy); }
+  .card p { margin: 0; color: var(--gray); }
+  .card.bad { border-top: 4px solid var(--red); }
+  .card.good { border-top: 4px solid var(--green); }
+  .timeline { margin-top: 18px; display: grid; gap: 10px; font-size: 0.92rem; }
+  .timeline div { display: flex; gap: 10px; align-items: baseline; }
+  .timeline b { min-width: 74px; color: var(--navy); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .step { border: 1px solid var(--border); border-radius: 16px; padding: 28px; background: #fff; }
+  .step .n { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; font-weight: 800; margin-bottom: 16px; }
+  .step h3 { margin: 0 0 8px; color: var(--navy); }
+  .step p { margin: 0; color: var(--gray); }
+
+  /* dashboard */
+  .dash-sec { background: var(--bg); }
+  .tabs { display: flex; gap: 8px; margin: 0 0 18px; flex-wrap: wrap; }
+  .tab {
+    border: 1.5px solid var(--border); background: #fff; color: var(--navy); font-weight: 600;
+    padding: 9px 20px; border-radius: 999px; cursor: pointer; font-size: 0.95rem;
+  }
+  .tab[aria-selected="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .dash { background: #fff; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 18px 50px rgba(15,31,56,0.10); }
+  .dash-head { background: var(--navy); color: #fff; padding: 16px 22px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+  .dash-head b span { color: var(--amber); }
+  .dash-head small { color: #cfd6e4; }
+  .stats { display: flex; gap: 14px; padding: 18px 22px 0; flex-wrap: wrap; }
+  .stat { border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; min-width: 140px; background: #fff; }
+  .stat .l { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat .v { font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+  .tablewrap { padding: 18px 22px 22px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; }
+  th { text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray); background: #fafbfc; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  .nm { font-weight: 600; }
+  .pr { color: var(--gray); font-size: 0.84rem; max-width: 280px; }
+  .rt { font-weight: 700; color: var(--green); }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.76rem; font-weight: 600; }
+  .badge.y { background: var(--green-bg); color: var(--green); }
+  .badge.n { background: #eef0f3; color: var(--gray); }
+  .dash-foot { padding: 0 22px 18px; font-size: 0.8rem; color: var(--gray); }
+
+  /* offer */
+  .offer { background: var(--navy); color: #fff; }
+  .offer .title { color: #fff; }
+  .offer .sub { color: #cfd6e4; }
+  .offer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px; align-items: center; }
+  .checks { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 12px; }
+  .checks li { padding-left: 32px; position: relative; color: #e4e9f3; }
+  .checks li::before { content: ""; position: absolute; left: 0; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--amber); }
+  .checks li::after { content: ""; position: absolute; left: 7px; top: 7px; width: 5px; height: 9px; border: solid #1a1205; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
+  .contact-card { background: #fff; color: var(--ink); border-radius: 18px; padding: 28px; }
+  .contact-card h3 { margin: 0 0 8px; color: var(--navy); }
+  .contact-card p { color: var(--gray); margin: 0 0 18px; }
+  .contact-card .btn { width: 100%; text-align: center; }
+  .contact-card small { display: block; margin-top: 12px; color: var(--gray); text-align: center; }
+
+  footer { background: #0a1527; color: #9fb0cc; padding: 36px 0; font-size: 0.85rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { margin-right: 16px; }
+
+  @media (max-width: 880px) {
+    .hero .wrap, .split, .offer-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .tiles { grid-template-columns: repeat(3, 1fr); }
+    .links a.hide-m { display: none; }
+    section { padding: 60px 0; }
+    .hero { padding: 56px 0 64px; }
+  }
+  @media (max-width: 480px) {
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .topbar { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.firstcallautomation@gmail.com&su=Set%20me%20up%20with%20FirstCall" target="_blank" rel="noopener">contact.firstcallautomation@gmail.com</a>
+</div></div>
+
+<nav class="main"><div class="wrap">
+  <a class="logo" href="#top">FirstCall<span> Automation</span></a>
+  <div class="links">
+    <a class="hide-m" href="#industries">Industries</a>
+    <a class="hide-m" href="#how">How it works</a>
+    <a class="hide-m" href="#dashboard">Dashboard</a>
+    <a class="btn small" href="#contact">Get set up free</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <h1>Every lead gets a reply. <em>In about a minute.</em></h1>
+    <p class="lead">When a customer fills out your website form, FirstCall replies by email and text right away, so no lead sits waiting while you are on the job.</p>
+    <div class="cta">
+      <a class="btn" href="#contact">Get set up free</a>
+      <a class="btn ghost" href="#dashboard">See the dashboard</a>
+    </div>
+    <div class="note">Free setup for our first customers. No credit card.</div>
+  </div>
+  <div class="flow" aria-hidden="true">
+    <div class="node">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></div>
+      <div><strong>Customer fills out your form</strong><span>0:00</span></div>
+    </div>
+    <div class="arrow"></div>
+    <div class="node">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+      <div><strong>FirstCall catches it</strong><span>Within seconds</span></div>
+    </div>
+    <div class="arrows2"><div class="arrow"></div><div class="arrow"></div></div>
+    <div class="branch">
+      <div class="node small">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9 6 9-6M3 7v10h18V7z"/></svg></div>
+        <div><strong>Email reply</strong><span>Always</span></div>
+      </div>
+      <div class="node small">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></div>
+        <div><strong>Text reply</strong><span>If they opt in</span></div>
+      </div>
+    </div>
+    <div class="arrows2"><div class="arrow"></div><div class="arrow"></div></div>
+    <div class="node">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+      <div><strong>Logged on your dashboard</strong><span>Every lead, with response time</span></div>
+    </div>
+    <div class="flowtag">About 60 seconds, start to finish</div>
+  </div>
+</div></header>
+
+<div class="industries" id="industries">
+  <div class="wrap">
+    <h2>One tool for any home-service business</h2>
+    <div class="tiles">
+      <div class="tile t1"><i>Live</i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/></svg><b>HVAC</b></div>
+      <div class="tile t2"><i>Live</i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><b>Plumbing</b></div>
+      <div class="tile t3"><i>Live</i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>Electrical</b></div>
+      <div class="tile t4"><i>Live</i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8M6 10v10h12V10"/></svg><b>Roofing</b></div>
+      <div class="tile t5"><i>Live</i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C5 9 11 4 20 4c0 9-5 15-15 15zM5 19l7-7"/></svg><b>Landscaping</b></div>
+      <div class="tile t6"><i>Live</i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg><b>Cleaning</b></div>
+    </div>
+    <p class="more">If customers contact you through a form, a call or a text, we can build the same fast reply for you.</p>
+  </div>
+</div>
+
+<section class="problem">
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <h2 class="title">The first company to answer usually gets the job.</h2>
+    <p class="sub">A homeowner with a broken AC or a leaking pipe contacts a few companies. You are under a house, on a roof, or driving. By the time you call back, they have already hired someone else.</p>
+    <div class="split">
+      <div class="card bad">
+        <h3>Without FirstCall</h3>
+        <p>The request sits in your inbox until you have a free minute.</p>
+        <div class="timeline">
+          <div><b>2:14 PM</b><span>Customer sends a request</span></div>
+          <div><b>2:20 PM</b><span>Customer contacts two other companies</span></div>
+          <div><b>5:40 PM</b><span>You finally see it and call back</span></div>
+        </div>
+      </div>
+      <div class="card good">
+        <h3>With FirstCall</h3>
+        <p>The customer hears back right away, and knows you are on it.</p>
+        <div class="timeline">
+          <div><b>2:14 PM</b><span>Customer sends a request</span></div>
+          <div><b>2:15 PM</b><span>Email and text arrive: "We got it, we'll call shortly"</span></div>
+          <div><b>5:40 PM</b><span>You call back a customer who is still waiting for you</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">How it works</p>
+      <h2 class="title">Set up once. Then it runs.</h2>
+      <p class="sub">You do not learn new software. Your form stays your form.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>A customer reaches out</h3><p>They fill out the form on your website, the same one you use today.</p></div>
+      <div class="step"><div class="n">2</div><h3>We reply right away</h3><p>A short, friendly email goes out about a minute later. A text goes out too, only if the customer said texting is okay.</p></div>
+      <div class="step"><div class="n">3</div><h3>You see everything</h3><p>Every lead lands in your dashboard with how fast it was answered, so you can see what is working.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dash-sec" id="dashboard">
+  <div class="wrap">
+    <p class="eyebrow">Your dashboard</p>
+    <h2 class="title">See every lead and how fast it got answered.</h2>
+    <p class="sub">This is a sample with made-up customers. Switch the trade to see how it looks for each one.</p>
+
+    <div class="tabs" role="tablist" aria-label="Choose a trade">
+      <button class="tab" role="tab" aria-selected="true" data-k="hvac">HVAC</button>
+      <button class="tab" role="tab" aria-selected="false" data-k="plumbing">Plumbing</button>
+      <button class="tab" role="tab" aria-selected="false" data-k="electrical">Electrical</button>
+    </div>
+
+    <div class="dash">
+      <div class="dash-head">
+        <b id="d-brand"></b>
+        <small>Lead Response Dashboard</small>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="l">Total leads</div><div class="v" id="s-total">0</div></div>
+        <div class="stat"><div class="l">Avg response time</div><div class="v" id="s-avg">-</div></div>
+        <div class="stat"><div class="l">Texts sent</div><div class="v" id="s-sms">0 / 0</div></div>
+        <div class="stat"><div class="l">Booked</div><div class="v" id="s-conv">0</div></div>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Lead</th><th>Problem</th><th>Came in</th><th>Response</th><th>Text</th><th>Source</th><th>Booked</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="dash-foot">Sample data. Names, numbers and results are made up for this demo.</div>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="contact">
+  <div class="wrap offer-grid">
+    <div>
+      <p class="eyebrow">Get started</p>
+      <h2 class="title">We set it up free. You tell others how it went.</h2>
+      <p class="sub">We are working with our first few businesses. In return for free setup, we ask to share how it worked for you.</p>
+      <ul class="checks">
+        <li>Free setup for our first customers</li>
+        <li>Works with the form you already have</li>
+        <li>Email replies, plus texts when your customer says it is okay</li>
+        <li>A dashboard showing every lead and how fast it was answered</li>
+      </ul>
+    </div>
+    <div class="contact-card">
+      <h3>Reply yes and we'll get it running</h3>
+      <p>Send us a short note. Tell us your trade and where your leads come from today.</p>
+      <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.firstcallautomation@gmail.com&su=Set%20me%20up%20with%20FirstCall" target="_blank" rel="noopener">Email us</a>
+      <small>contact.firstcallautomation@gmail.com</small>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div>&copy; FirstCall Automation. Built in Georgia.</div>
+  <div>
+    <a href="https://sripottabathula.github.io/firstcall-automation/privacy.html">Privacy Policy</a>
+    <a href="https://sripottabathula.github.io/firstcall-automation/terms.html">Terms and Conditions</a>
+  </div>
+</div></footer>
+
+<script>
+  // Sample data only. Names and numbers are made up.
+  const DEMO = {
+    hvac: {
+      brand: 'Cobalt Comfort <span>Heating &amp; Air</span>',
+      leads: [
+        ['Michael T.', '(404) 555-0142', 'AC runs nonstop but the house will not get below 82', 'Today 1:12 PM', 128, true, 'Website form', true],
+        ['Jennifer C.', '(770) 555-0118', 'Furnace will not turn on, thermostat is blank', 'Today 11:47 AM', 150, true, 'Google Ads', true],
+        ['Marcus W.', '(678) 555-0177', 'Annual tune-up before winter', 'Yesterday 4:30 PM', 74, true, 'Website form', false],
+        ['Priya S.', '(404) 555-0163', 'Heat pump blowing cold air', 'Yesterday 9:05 AM', 66, true, 'Website form', true],
+        ['Dale R.', '(770) 555-0129', 'Strange smell near the furnace', 'Mon 3:22 PM', 92, false, 'Website form', false]
+      ]
+    },
+    plumbing: {
+      brand: 'Bluewater <span>Plumbing</span>',
+      leads: [
+        ['Ana G.', '(404) 555-0191', 'Water heater leaking in the garage', 'Today 12:40 PM', 71, true, 'Website form', true],
+        ['Tom B.', '(770) 555-0104', 'Kitchen sink clogged, tried a plunger', 'Today 9:18 AM', 58, true, 'Google Ads', true],
+        ['Lena H.', '(678) 555-0150', 'Quote to replace two toilets', 'Yesterday 5:02 PM', 105, true, 'Website form', false],
+        ['Chris D.', '(404) 555-0138', 'Burst pipe under the bathroom sink', 'Yesterday 7:44 AM', 49, true, 'Website form', true],
+        ['Rosa M.', '(770) 555-0186', 'Low water pressure in the shower', 'Mon 2:10 PM', 83, false, 'Website form', false]
+      ]
+    },
+    electrical: {
+      brand: 'Brightline <span>Electric</span>',
+      leads: [
+        ['Greg P.', '(404) 555-0112', 'Outlets in the kitchen stopped working', 'Today 10:25 AM', 62, true, 'Website form', true],
+        ['Nina F.', '(678) 555-0145', 'Need a ceiling fan installed', 'Today 8:51 AM', 88, true, 'Google Ads', false],
+        ['Sam K.', '(770) 555-0171', 'Breaker keeps tripping', 'Yesterday 3:36 PM', 54, true, 'Website form', true],
+        ['Olivia J.', '(404) 555-0199', 'EV charger quote for the garage', 'Yesterday 11:15 AM', 97, true, 'Website form', false],
+        ['Ben L.', '(770) 555-0127', 'Flickering lights in the living room', 'Mon 1:48 PM', 76, false, 'Website form', false]
+      ]
+    }
+  };
+
+  function fmt(sec) {
+    const m = Math.floor(sec / 60), s = Math.round(sec % 60);
+    return m === 0 ? s + 's' : m + 'm ' + String(s).padStart(2, '0') + 's';
+  }
+  function esc(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+  function render(key) {
+    const d = DEMO[key];
+    document.getElementById('d-brand').innerHTML = d.brand;
+    const rows = document.getElementById('rows');
+    rows.innerHTML = '';
+    let total = 0, sms = 0, conv = 0;
+    d.leads.forEach(l => {
+      total += l[4]; if (l[5]) sms++; if (l[7]) conv++;
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td><div class="nm">' + esc(l[0]) + '</div><div style="color:var(--gray);font-size:0.8rem">' + esc(l[1]) + '</div></td>' +
+        '<td class="pr">' + esc(l[2]) + '</td>' +
+        '<td>' + esc(l[3]) + '</td>' +
+        '<td><span class="rt">' + fmt(l[4]) + '</span></td>' +
+        '<td><span class="badge ' + (l[5] ? 'y' : 'n') + '">' + (l[5] ? 'Sent' : 'No consent') + '</span></td>' +
+        '<td style="color:var(--gray);font-size:0.82rem">' + esc(l[6]) + '</td>' +
+        '<td><span class="badge ' + (l[7] ? 'y' : 'n') + '">' + (l[7] ? 'Yes' : 'No') + '</span></td>';
+      rows.appendChild(tr);
+    });
+    document.getElementById('s-total').textContent = d.leads.length;
+    document.getElementById('s-avg').textContent = fmt(total / d.leads.length);
+    document.getElementById('s-sms').textContent = sms + ' / ' + d.leads.length;
+    document.getElementById('s-conv').textContent = conv;
+  }
+
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      render(btn.dataset.k);
+    });
+  });
+  render('hvac');
+</script>
+</body>
+</html>
