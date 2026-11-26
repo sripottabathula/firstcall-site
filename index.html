@@ -140,6 +140,15 @@
   .step h3 { margin: 0 0 8px; color: var(--navy); }
   .step p { margin: 0; color: var(--gray); }
 
+  /* try it */
+  .try-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .try-steps { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 14px; counter-reset: t; }
+  .try-steps li { padding-left: 44px; position: relative; color: var(--gray); }
+  .try-steps li b { color: var(--navy); display: block; }
+  .try-steps li::before { counter-increment: t; content: counter(t); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--amber); color: #1a1205; font-weight: 800; display: grid; place-items: center; font-size: 0.9rem; }
+  .try-note { font-size: 0.85rem; color: var(--gray); margin: 0; }
+  #firstcall-form .fc-form { max-width: none; box-shadow: 0 18px 50px rgba(15,31,56,0.10); }
+
   /* dashboard */
   .dash-sec { background: var(--bg); }
   .tabs { display: flex; gap: 8px; margin: 0 0 18px; flex-wrap: wrap; }
@@ -189,7 +198,7 @@
   footer a { margin-right: 16px; }
 
   @media (max-width: 880px) {
-    .hero .wrap, .split, .offer-grid { grid-template-columns: 1fr; }
+    .hero .wrap, .split, .offer-grid, .try-grid { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .tiles { grid-template-columns: repeat(3, 1fr); }
     .links a.hide-m { display: none; }
@@ -205,7 +214,7 @@
 <body>
 
 <div class="topbar"><div class="wrap">
-  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.firstcallautomation@gmail.com&su=Set%20me%20up%20with%20FirstCall" target="_blank" rel="noopener">contact.firstcallautomation@gmail.com</a>
+  <a href="mailto:contact.firstcallautomation@gmail.com?subject=Set%20me%20up%20with%20FirstCall">contact.firstcallautomation@gmail.com</a>
 </div></div>
 
 <nav class="main"><div class="wrap">
@@ -213,6 +222,7 @@
   <div class="links">
     <a class="hide-m" href="#industries">Industries</a>
     <a class="hide-m" href="#how">How it works</a>
+    <a class="hide-m" href="#try">Try it</a>
     <a class="hide-m" href="#dashboard">Dashboard</a>
     <a class="btn small" href="#contact">Get set up free</a>
   </div>
@@ -224,7 +234,7 @@
     <p class="lead">When a customer fills out your website form, FirstCall replies by email and text right away, so no lead sits waiting while you are on the job.</p>
     <div class="cta">
       <a class="btn" href="#contact">Get set up free</a>
-      <a class="btn ghost" href="#dashboard">See the dashboard</a>
+      <a class="btn ghost" href="#try">Try it yourself</a>
     </div>
     <div class="note">Free setup for our first customers. No credit card.</div>
   </div>
@@ -262,17 +272,17 @@
   <div class="wrap">
     <h2>One tool for any home-service business</h2>
     <div class="tiles">
-      <div class="tile t1"><i>Live</i>
+      <div class="tile t1">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/></svg><b>HVAC</b></div>
-      <div class="tile t2"><i>Live</i>
+      <div class="tile t2">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><b>Plumbing</b></div>
-      <div class="tile t3"><i>Live</i>
+      <div class="tile t3">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>Electrical</b></div>
-      <div class="tile t4"><i>Live</i>
+      <div class="tile t4">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8M6 10v10h12V10"/></svg><b>Roofing</b></div>
-      <div class="tile t5"><i>Live</i>
+      <div class="tile t5">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C5 9 11 4 20 4c0 9-5 15-15 15zM5 19l7-7"/></svg><b>Landscaping</b></div>
-      <div class="tile t6"><i>Live</i>
+      <div class="tile t6">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg><b>Cleaning</b></div>
     </div>
     <p class="more">If customers contact you through a form, a call or a text, we can build the same fast reply for you.</p>
@@ -318,6 +328,26 @@
       <div class="step"><div class="n">1</div><h3>A customer reaches out</h3><p>They fill out the form on your website, the same one you use today.</p></div>
       <div class="step"><div class="n">2</div><h3>We reply right away</h3><p>A short, friendly email goes out about a minute later. A text goes out too, only if the customer said texting is okay.</p></div>
       <div class="step"><div class="n">3</div><h3>You see everything</h3><p>Every lead lands in your dashboard with how fast it was answered, so you can see what is working.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="try">
+  <div class="wrap try-grid">
+    <div>
+      <p class="eyebrow">Try it yourself</p>
+      <h2 class="title">Be the customer for a minute.</h2>
+      <p class="sub">This form is live. Fill it out the way a homeowner would, and see what your customers would get.</p>
+      <ol class="try-steps">
+        <li><b>Fill out the form</b>Use your real email so the reply reaches you.</li>
+        <li><b>Check your inbox</b>A reply arrives in about a minute. Check spam if you don't see it.</li>
+        <li><b>That's what your customers get</b>With your business name on it, every time, even when you're on a job.</li>
+      </ol>
+      <p class="try-note">We only use what you send here to reply to you. We won't add you to a mailing list.</p>
+    </div>
+    <div>
+      <div id="firstcall-form"></div>
+      <script src="https://firstcall-service.firstcall-service.workers.dev/form/firstcall-site.js" async></script>
     </div>
   </div>
 </section>
@@ -372,7 +402,7 @@
     <div class="contact-card">
       <h3>Reply yes and we'll get it running</h3>
       <p>Send us a short note. Tell us your trade and where your leads come from today.</p>
-      <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.firstcallautomation@gmail.com&su=Set%20me%20up%20with%20FirstCall" target="_blank" rel="noopener">Email us</a>
+      <a class="btn" href="mailto:contact.firstcallautomation@gmail.com?subject=Set%20me%20up%20with%20FirstCall">Email us</a>
       <small>contact.firstcallautomation@gmail.com</small>
     </div>
   </div>
