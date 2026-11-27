@@ -21,6 +21,8 @@
     --card-border: #dfe3ea;
     --field-bg: #ffffff;
     --field-border: #c9cfd9;
+    --field-ink: #1d2433;
+    --field-placeholder: #8a93a3;
     --heading-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --body-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --glow: none;
@@ -57,9 +59,10 @@
   #firstcall-form .fc-form h3 { font-family: var(--heading-font); color: var(--form-heading); }
   #firstcall-form .fc-form .fc-sub, #firstcall-form .fc-form .fc-note { color: var(--card-muted); }
   #firstcall-form .fc-form label { color: var(--card-ink); }
-  #firstcall-form .fc-form input[type=text], #firstcall-form .fc-form input[type=email], #firstcall-form .fc-form input[type=tel], #firstcall-form .fc-form textarea { color: #1d2433; background: var(--field-bg); border-color: var(--field-border); }
+  #firstcall-form .fc-form input[type=text], #firstcall-form .fc-form input[type=email], #firstcall-form .fc-form input[type=tel], #firstcall-form .fc-form textarea { color: var(--field-ink); background: var(--field-bg); border-color: var(--field-border); caret-color: var(--field-ink); }
+  #firstcall-form .fc-form input::placeholder, #firstcall-form .fc-form textarea::placeholder { color: var(--field-placeholder); opacity: 1; }
   #firstcall-form .fc-form button { font-family: var(--heading-font); color: var(--button-text); }
-  :root { --button-text: #ffffff; --ink: #1d2433; --muted: #3d4556; --bg: #f4f8fd; --soft: #f4f8fd; --header-bg: #f4f8fd; --card: #10162c; --card-border: #0b2470; --field-bg: #ffffff; --field-border: #8a93ad; --heading: #0b2470; --card-ink: #ffffff; --card-muted: #d3d8e6; --form-heading: #ce0000; --header-border: #be222d; --accent: #0b2470; --heading-font: Helvetica, Arial, sans-serif, system-ui, sans-serif; --body-font: Helvetica, Arial, sans-serif, system-ui, sans-serif; }
+  :root { --button-text: #ffffff; --ink: #1d2433; --muted: #3d4556; --bg: #f4f8fd; --soft: #f4f8fd; --header-bg: #f4f8fd; --card: #10162c; --card-border: #0b2470; --field-bg: #ffffff; --field-border: #8a93ad; --heading: #0b2470; --card-ink: #ffffff; --card-muted: #d3d8e6; --form-heading: #ce0000; --header-border: #be222d; --accent: #0b2470; --heading-font: Helvetica, Arial, sans-serif, system-ui, sans-serif; --body-font: Helvetica, Arial, sans-serif, system-ui, sans-serif; --field-ink: #1d2433; }
   @media (max-width: 520px) { h1 { font-size: 25px; } .logo { font-size: 17px; } .logo-img { max-height: 52px; max-width: 150px; } .tagline { display: none; } }
 </style>
 </head>
@@ -83,7 +86,7 @@
 
     <h2>What happens when you send it</h2>
     <ol>
-      <li>Within about a minute, you get a "We got your request" email from Sturges Heating &amp; Air Conditioning, Inc..</li>
+      <li>Within about a minute, you get a "We got your request" email from Sturges Heating &amp; Air Conditioning, Inc.</li>
       <li>The owner gets an alert with the customer's name, phone, email and what they need. (In this preview the alert goes to Sri. Once it's turned on, it goes to you.)</li>
       <li>Every request is saved on a private page you can check anytime.</li>
     </ol>

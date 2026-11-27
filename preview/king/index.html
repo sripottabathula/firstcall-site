@@ -21,6 +21,8 @@
     --card-border: #dfe3ea;
     --field-bg: #ffffff;
     --field-border: #c9cfd9;
+    --field-ink: #1d2433;
+    --field-placeholder: #8a93a3;
     --heading-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --body-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --glow: none;
@@ -57,9 +59,10 @@
   #firstcall-form .fc-form h3 { font-family: var(--heading-font); color: var(--form-heading); }
   #firstcall-form .fc-form .fc-sub, #firstcall-form .fc-form .fc-note { color: var(--card-muted); }
   #firstcall-form .fc-form label { color: var(--card-ink); }
-  #firstcall-form .fc-form input[type=text], #firstcall-form .fc-form input[type=email], #firstcall-form .fc-form input[type=tel], #firstcall-form .fc-form textarea { color: #1d2433; background: var(--field-bg); border-color: var(--field-border); }
+  #firstcall-form .fc-form input[type=text], #firstcall-form .fc-form input[type=email], #firstcall-form .fc-form input[type=tel], #firstcall-form .fc-form textarea { color: var(--field-ink); background: var(--field-bg); border-color: var(--field-border); caret-color: var(--field-ink); }
+  #firstcall-form .fc-form input::placeholder, #firstcall-form .fc-form textarea::placeholder { color: var(--field-placeholder); opacity: 1; }
   #firstcall-form .fc-form button { font-family: var(--heading-font); color: var(--button-text); }
-  :root { --button-text: #ffffff; --ink: #2d3748; --muted: #4a5568; --bg: #f7fafc; --soft: #f7fafc; --header-bg: #ffffff; --card: #e4e9f4; --card-border: #d5dcea; --field-bg: #ffffff; --field-border: #c3cbdb; --heading: #b22f30; --form-heading: #1a202c; --header-border: #e4e9f4; --accent: #b22f30; }
+  :root { --button-text: #ffffff; --ink: #2d3748; --muted: #4a5568; --bg: #f7fafc; --soft: #f7fafc; --header-bg: #ffffff; --card: #e4e9f4; --card-border: #d5dcea; --field-bg: #ffffff; --field-border: #c3cbdb; --heading: #b22f30; --form-heading: #1a202c; --header-border: #e4e9f4; --accent: #b22f30; --field-ink: #1d2433; }
   @media (max-width: 520px) { h1 { font-size: 25px; } .logo { font-size: 17px; } .logo-img { max-height: 52px; max-width: 150px; } .tagline { display: none; } }
 </style>
 </head>
